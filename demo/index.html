@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        background: #fafafa;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="demo"></div>
+
+    <script type="module">
+      import { html, render } from "lit";
+      import "./my-fakecomponent.js";
+
+      const title = "Hello owc World!";
+      render(
+        html`
+          <my-fakecomponent .title=${title}>
+            <!-- the parentNode id, "miLista", is the reference to recover and draw in shadow dom -->
+            <ul id="miLista">
+              <li>uno</li>
+              <li>dos</li>
+              <li>tres</li>
+              <li>cuatro</li>
+            </ul>
+          </my-fakecomponent>
+        `,
+        document.querySelector("#demo")
+      );
+    </script>
+  </body>
+</html>
