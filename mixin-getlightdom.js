@@ -26,7 +26,7 @@ export const MixinGetLightDom = (SuperClass, HTMLAttributesToExtract = ['A', 'IM
       return this.HTMLAttr;
     }
 
-    /**
+     /**
      * Método para leer del DOM los elementos e insertarlos
      * como propiedades del componentes que luego se renderizan
      * en el shadowRoot.
