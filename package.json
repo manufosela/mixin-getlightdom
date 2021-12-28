@@ -1,6 +1,6 @@
 {
   "name": "@manufosela/mixin-getlightdom",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Mixin to get the lightdom of a component and insert properties into it to be rendered.",
   "main": "mixin-getlightdom.js",
   "scripts": {
