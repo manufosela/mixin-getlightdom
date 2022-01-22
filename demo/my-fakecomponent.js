@@ -40,7 +40,7 @@ export class MyFakecomponent extends MixinGetLightDom(LitElement) {
     /** this._HTMLChildren(); 
      *  returns an object with all lightdom childrens that matches the HTML tags in the list HTMLAttributesToExtract
      */
-    const childNodes = this._HTMLChildren();
+    const childNodes = this.HTMLChildren();
 
     this.list = childNodes.miLista;
   }
