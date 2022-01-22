@@ -13,9 +13,9 @@ This mixin allows to obtain the elements of the lightdom of a component and inse
 
 ```javascript
 import { LitElement, html, css } from "lit";
-import { HTMLChildrenMixin } from "@manufosela/MixinGetlightdom";
+import { MixinGetLightDom } from "@manufosela/MixinGetlightdom";
 
-export class KwHeader extends MixinGetlightdom(LitElement) {
+export class KwHeader extends MixinGetLightDom(LitElement) {
   // ...
 }
 ```
@@ -27,4 +27,33 @@ If you want to use other tags, you can pass them as a parameter.
 export class KwHeader extends MixinGetlightdom(LitElement, ["A", "P"]) {
   // ...
 }
+```
+
+## EXAMPLE
+
+```html
+<my-fakecomponent title="${title}">
+  <!-- the parentNode id, "miLista", is the reference to recover and draw in shadow dom -->
+  <ul id="miLista">
+    <li>uno</li>
+    <li>dos</li>
+    <li>tres</li>
+    <li>cuatro</li>
+  </ul>
+</my-fakecomponent>
+```
+
+Into my web-component in connectedCallback, I get the lightdom of the component and insert it as a property.
+
+```javascript
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    /** this._HTMLChildren();
+     *  returns an object with all lightdom childrens that matches the HTML tags in the list HTMLAttributesToExtract
+     */
+    const childNodes = this._HTMLChildren();
+
+    this.list = childNodes.miLista; // Reference to the UL id "miLista" to get all LI childrens
 ```
