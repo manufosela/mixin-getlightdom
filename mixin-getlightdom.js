@@ -5,7 +5,7 @@ export const MixinGetLightDom = (SuperClass, HTMLAttributesToExtract = ['A', 'IM
       this.HTMLAttributesToExtract = HTMLAttributesToExtract;
     }
 
-    extractHTMLDataAttributes(el) {
+    _extractHTMLDataAttributes(el) {
       this.HTMLAttr = {};
       const dataAttrArr = Object.keys(el.dataset);
       dataAttrArr.forEach((dataAttr) => {
@@ -14,7 +14,7 @@ export const MixinGetLightDom = (SuperClass, HTMLAttributesToExtract = ['A', 'IM
       return this.HTMLAttr;
     }
 
-    extractHTMLAttributes(el) {
+    _extractHTMLAttributes(el) {
       this.HTMLAttr = {};
       const attrs = Array.prototype.slice.call(el.attributes);
       attrs.forEach((attr) => {
@@ -33,7 +33,7 @@ export const MixinGetLightDom = (SuperClass, HTMLAttributesToExtract = ['A', 'IM
      * De esta manera el SEO interpreta los elementos HTML del DOM
      * Por otro si fallase la carga del componentes se visualizaria el contenido, aunque sin CSS
      */
-    _HTMLChildren(node = this) {
+    HTMLChildren(node = this) {
       const childNodes = [...node.querySelectorAll('*')];
       const childArr = [];
       let idCounter = 0;
@@ -45,16 +45,16 @@ export const MixinGetLightDom = (SuperClass, HTMLAttributesToExtract = ['A', 'IM
             idCounter = (el.id) ? idCounter : idCounter + 1;
             if (!el.querySelectorAll('*').length) {
               if (this.HTMLAttributesToExtract.includes(el.tagName)) {
-                childArr[id] = this.extractHTMLAttributes(el);
+                childArr[id] = this._extractHTMLAttributes(el);
               } else {
                 childArr[id] = el.innerHTML;
               }
             } else {
               let elAttr = {};
               if (this.HTMLAttributesToExtract.includes(el.tagName)) {
-                elAttr = this.extractHTMLAttributes(el);
+                elAttr = this._extractHTMLAttributes(el);
               }
-              const objChildren = this._HTMLChildren(el);
+              const objChildren = this.HTMLChildren(el);
               childArr[id] = { ...elAttr, ...objChildren };
             }
           }
